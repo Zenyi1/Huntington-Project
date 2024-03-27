@@ -7,7 +7,7 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, ttk, filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import pandas as pd
@@ -23,7 +23,7 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
-window.geometry("1000x550")
+window.geometry("1000x600")
 window.configure(bg = "#045C76")
 
 
@@ -316,6 +316,30 @@ style.configure("Treeview.Heading", background="#1EA1EB", fieldbackground="#1EA1
 style.map("Treeview", background=[("selected", "#1CC0D8")])
 
 table.place(x=395, y=225, height=260)
+
+from tkinter import filedialog
+
+# Function to handle button click event
+def choose_file():
+    file_path = filedialog.askopenfilename()
+    # Do something with the selected file_path, such as printing it
+    print("Selected file:", file_path)
+
+# Create a Button widget
+choose_file_button = Button(
+    window,
+    text="Choose File",
+    command=choose_file,
+    bg="#1CC0D8",
+    fg="white",
+    font=("Inter Bold", 14)
+)
+
+# Place the button at the bottom of the window
+choose_file_button.place(x=450, y=550)
+
+window.mainloop()
+
 
 window.resizable(False, False)
 window.mainloop()
